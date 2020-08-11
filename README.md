@@ -1,1 +1,1 @@
-# fritzdect-prom-exporter
+# FritzBox Dect Prometheus Exporter
