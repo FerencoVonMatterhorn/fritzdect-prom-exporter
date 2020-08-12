@@ -14,7 +14,7 @@ jobs:
 
   go-test:
     name: test
-    needs: [lint]
+    needs: [go-lint]
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
