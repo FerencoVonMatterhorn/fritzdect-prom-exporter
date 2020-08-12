@@ -24,6 +24,7 @@ jobs:
 
   docker-build-push:
     needs: [go-lint, go-test]
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
