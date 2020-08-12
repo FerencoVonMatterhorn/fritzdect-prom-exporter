@@ -28,7 +28,7 @@ func main() {
 		return
 	}
 	for _, dev := range devs.Switches(){
-		log.Info(dev.Temperature.FmtCelsius())
+		log.Info("Temperatur: " + dev.Temperature.FmtCelsius() + "Celsius")
 	}
 
 }
