@@ -1,6 +1,8 @@
 name: Docker
 on:
   workflow_dispatch:
+
+jobs:
     docker-build-push:
       needs: [go-lint, go-test]
       runs-on: self-hosted
