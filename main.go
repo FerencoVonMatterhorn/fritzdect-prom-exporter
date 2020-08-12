@@ -27,6 +27,7 @@ func main() {
 		log.Error(err)
 		return
 	}
+
 	for _, dev := range devs.Switches(){
 		log.Info("Temperatur: " + dev.Temperature.FmtCelsius() + "Celsius")
 	}

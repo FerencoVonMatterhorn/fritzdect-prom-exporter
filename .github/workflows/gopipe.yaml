@@ -1,0 +1,23 @@
+name: Go
+on: push
+
+jobs:
+  go-lint:
+    name: Lint
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint Go files
+        uses: actions-contrib/golangci-lint@v1
+        with:
+          args: run --timeout 5m
+
+  go-test:
+    name: Test
+    needs: [go-lint]
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-go@v2
+      - name: Test Go files
+        run: go test ./...
