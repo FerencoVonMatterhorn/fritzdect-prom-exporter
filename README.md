@@ -1,2 +1,2 @@
 # FritzBox Dect Prometheus Exporter
-![image of gopher](/images/gopher.jpg?raw=true)
+![image of gopher](/images/gopher.jpg =400x400)
