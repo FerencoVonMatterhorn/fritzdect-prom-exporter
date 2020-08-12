@@ -1,2 +1,2 @@
 # FritzBox Dect Prometheus Exporter
-<img src="images/gopher.jpg" width=10 height=10 />
+<img src="images/gopher.jpg" width=200 height=200 />
