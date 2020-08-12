@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/bpicode/fritzctl/fritz"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -15,6 +16,25 @@ func main() {
 	log.Info("Set Loglevel to " + loglevel)
 	log.Info("username: " + userName)
 	log.Info("password: " + password)
+	connection,err := connectToFritzbox(userName, password)
+	if err != nil {
+		log.Error(err)
+		return
+	}
+	log.Info(connection.List())
+
+}
+
+func connectToFritzbox(username string, password string) (fritz.HomeAuto, error) {
+	fritzConnection := fritz.NewHomeAuto(
+		fritz.SkipTLSVerify(),
+		fritz.Credentials(username, password),
+		)
+	err := fritzConnection.Login()
+	if err != nil {
+		return nil,err
+	}
+	return fritzConnection,err
 }
 
 func getCLArgLoglevel() (string, string, string) {
