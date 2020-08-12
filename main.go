@@ -11,7 +11,6 @@ func main() {
 		log.Error(err)
 		return
 	}
-
 }
 
 func getCLArgLoglevel() string {

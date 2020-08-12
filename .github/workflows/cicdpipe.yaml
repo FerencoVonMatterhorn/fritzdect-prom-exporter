@@ -2,7 +2,7 @@ name: Go
 on: push
 
 jobs:
-  golangci:
+  go-lint:
     name: lint
     runs-on: self-hosted
     steps:
@@ -11,3 +11,12 @@ jobs:
         uses: actions-contrib/golangci-lint@v1
         with:
           args: run --timeout 5m
+
+  go-test-build:
+    name: test and build
+    runs-on: self-hosted
+    steps:
+      uses: actions/checkout@master
+
+    - name: run
+      uses: cedrickring/golang-action@1.5.2
