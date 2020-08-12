@@ -6,17 +6,23 @@ import (
 )
 
 func main() {
-	err := setLogLevel(getCLArgLoglevel())
+	loglevel, userName, password := getCLArgLoglevel()
+	err := setLogLevel(loglevel)
 	if err != nil {
 		log.Error(err)
 		return
 	}
+	log.Info("Set Loglevel to " + loglevel)
+	log.Info("username: " + userName)
+	log.Info("password: " + password)
 }
 
-func getCLArgLoglevel() string {
-	loglevel := flag.String("Loglevel",log.DebugLevel.String(),"Set the Loglevel")
+func getCLArgLoglevel() (string, string, string) {
+	loglevel := flag.String("l",log.DebugLevel.String(),"Set the Loglevel")
+	userName := flag.String("u", "", "Set the FritzBox User for authentication")
+	password := flag.String("p", "", "Set the Fritzbox password for authentication")
 	flag.Parse()
-	return *loglevel
+	return *loglevel, *userName, *password
 }
 
 func setLogLevel(loglevel string) error {
