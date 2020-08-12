@@ -18,6 +18,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v2
       - name: Go Test
         run: go test ./...
