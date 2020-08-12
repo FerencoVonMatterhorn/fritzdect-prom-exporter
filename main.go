@@ -22,6 +22,14 @@ func main() {
 		return
 	}
 	log.Info(connection.List())
+	devs, err := connection.List()
+	if err != nil {
+		log.Error(err)
+		return
+	}
+	for _, dev := range devs.Switches(){
+		log.Info(dev.Temperature.FmtCelsius())
+	}
 
 }
 
