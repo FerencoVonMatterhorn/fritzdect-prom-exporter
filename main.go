@@ -36,7 +36,11 @@ func main() {
 
 	recordMetrics(switches)
 	http.Handle("/metrics", promhttp.Handler())
-	http.ListenAndServe(":2112", nil)
+	err = http.ListenAndServe(":2112", nil)
+	if err != nil {
+		log.Error(err)
+		return
+	}
 
 }
 
