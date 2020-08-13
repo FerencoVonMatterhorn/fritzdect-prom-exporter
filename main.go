@@ -34,7 +34,7 @@ func main() {
 
 	switches := devs.Switches()
 
-	recordMetrics(switches)
+	recordMetrics(switches, c.Interval)
 	log.Debug("starting http endpoint")
 	http.Handle("/metrics", promhttp.Handler())
 	err = http.ListenAndServe(":2112", nil)
@@ -58,7 +58,7 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 }
 
 
-func recordMetrics(devlist []fritz.Device) {
+func recordMetrics(devlist []fritz.Device, interval int ) {
 	go func() {
 		for {
 			for _, dev := range devlist {
@@ -69,7 +69,7 @@ func recordMetrics(devlist []fritz.Device) {
 				dect_temperature.Set(temp)
 				log.Debug("set temp on dect dev")
 			}
-			time.Sleep(30 * time.Second)
+			time.Sleep(time.Duration(interval) * time.Second)
 		}
 	}()
 }
