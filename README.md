@@ -1,10 +1,16 @@
 <div align="center">
-  <a href="https://github.com/ferencovonmatterhorn/fritzdect-prom-exporter">
-    <img src="images/gopher.jpg" width=100 height=100>
+
+<p align="center">
+  <a href="https://github.com/ferenconvonmatterhorn/fritzdect-prom-exporter">
+    <img src="images/gopher.jpg" alt="Logo" width=400 height=400>
   </a>
-    
+
   <h3 align="center">FritzBox Dect Prometheus Exporter</h3>
-  </div>
+</p>
+
+</div>
+
+
   [![codecov](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter)
         ## Prerequisites - Creating the FRITZ!Box User <a name="prerequisites"></a>
         
