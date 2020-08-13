@@ -24,6 +24,11 @@ func Test_setLogLevel(t *testing.T) {
 			args:    args{"infooooooooooooooooooooo"},
 			wantErr: true,
 		},
+		{
+			name:    "insert integer",
+			args:    args{"5"},
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
