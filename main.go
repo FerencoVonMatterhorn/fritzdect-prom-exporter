@@ -69,7 +69,7 @@ func recordMetrics(devlist []fritz.Device) {
 				dect_temperature.Set(temp)
 				log.Debug("set temp on dect dev")
 			}
-			time.Sleep(2 * time.Second)
+			time.Sleep(30 * time.Second)
 		}
 	}()
 }
