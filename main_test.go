@@ -1,0 +1,35 @@
+package main
+
+import (
+	"testing"
+)
+
+func Test_setLogLevel(t *testing.T) {
+	t.Parallel()
+	type args struct {
+		loglevel string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			name:    "valid loglevel",
+			args:    args{"info"},
+			wantErr: false,
+		},
+		{
+			name:    "unvalid loglevel",
+			args:    args{"infooooooooooooooooooooo"},
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if err := setLogLevel(tt.args.loglevel); (err != nil) != tt.wantErr {
+				t.Errorf("setLogLevel() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
