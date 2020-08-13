@@ -6,8 +6,6 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-
-
 func main() {
 	c := config.Parse()
 	err := setLogLevel(c.Loglevel)
@@ -22,7 +20,7 @@ func main() {
 		log.Error(err)
 		return
 	}
-	log.Info(connection.List())
+
 	devs, err := connection.List()
 	if err != nil {
 		log.Error(err)
@@ -38,7 +36,7 @@ func main() {
 func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, error) {
 	fritzConnection := fritz.NewHomeAuto(
 		fritz.SkipTLSVerify(),
-		fritz.Credentials(credentials.Username,credentials.Password),
+		fritz.Credentials(credentials.Username, credentials.Password),
 	)
 	err := fritzConnection.Login()
 	if err != nil {
@@ -46,8 +44,6 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 	}
 	return fritzConnection, err
 }
-
-
 
 func setLogLevel(loglevel string) error {
 	lvl, err := log.ParseLevel(loglevel)
