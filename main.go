@@ -35,6 +35,7 @@ func main() {
 	switches := devs.Switches()
 
 	recordMetrics(switches)
+	log.Debug("starting http endpoint")
 	http.Handle("/metrics", promhttp.Handler())
 	err = http.ListenAndServe(":2112", nil)
 	if err != nil {
@@ -66,6 +67,7 @@ func recordMetrics(devlist []fritz.Device) {
 					panic(err)
 				}
 				dect_temperature.Set(temp)
+				log.Debug("set temp on dect dev")
 			}
 			time.Sleep(2 * time.Second)
 		}
