@@ -7,8 +7,7 @@ import (
 )
 
 func main() {
-	c := config.Parse()
-	err := setLogLevel(c.Loglevel)
+	c, err := config.Parse()
 	if err != nil {
 		log.Error(err)
 		return
@@ -43,13 +42,4 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 		return nil, err
 	}
 	return fritzConnection, err
-}
-
-func setLogLevel(loglevel string) error {
-	lvl, err := log.ParseLevel(loglevel)
-	if err != nil {
-		return err
-	}
-	log.SetLevel(lvl)
-	return nil
 }
