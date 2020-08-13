@@ -35,7 +35,8 @@ func main() {
 	switches := devs.Switches()
 
 	recordMetrics(switches)
-	startEndpoint()
+	http.Handle("/metrics", promhttp.Handler())
+	http.ListenAndServe(":2112", nil)
 
 }
 
@@ -51,10 +52,6 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 	return fritzConnection, err
 }
 
-func startEndpoint() {
-	http.Handle("/metrics", promhttp.Handler())
-	http.ListenAndServe(":2112", nil)
-}
 
 func recordMetrics(devlist []fritz.Device) {
 	go func() {
