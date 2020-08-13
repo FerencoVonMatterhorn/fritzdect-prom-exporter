@@ -17,17 +17,20 @@ type FritzBoxCredentials struct {
 }
 
 func (c Config) String() string {
-	return fmt.Sprintf("Set loglevel to %s \n username: %s \n password: %s", c.Loglevel, c.Credentials.Username, c.Credentials.Password)
+	return fmt.Sprintf("\nSet loglevel to %s\nusername: %s\npassword: %s", c.Loglevel, c.Credentials.Username, c.Credentials.Password)
 }
 
 func Parse() Config {
+	loglevel := flag.String("l", log.InfoLevel.String(), "Set the Loglevel")
+	username := flag.String("u", "", "Set the FritzBox User for authentication")
+	password := flag.String("p", "", "Set the Fritzbox password for authentication")
+	flag.Parse()
 	c := Config{
-		Loglevel: *flag.String("l", log.DebugLevel.String(), "Set the Loglevel"),
+		Loglevel: *loglevel,
 		Credentials: FritzBoxCredentials{
-			Username: *flag.String("u", "", "Set the FritzBox User for authentication"),
-			Password: *flag.String("p", "", "Set the Fritzbox password for authentication"),
+			Username: *username,
+			Password: *password,
 		},
 	}
-	flag.Parse()
 	return c
 }
