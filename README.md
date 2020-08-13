@@ -1,7 +1,10 @@
 # FritzBox Dect Prometheus Exporter
 <img src="images/gopher.jpg" width=300 height=300 />
 
-## Prerequisites - Creating the FRITZ!Box User
+##Table of contents
+1. [Prerequisites](#prerequisites)
+
+## Prerequisites - Creating the FRITZ!Box User <a name="prerequisites"></a>
 
 ### 1. Creating a user account with the right to configure FRITZ!Box settings  
 Create at least one user account that you can access the FRITZ!Box settings with:  
@@ -32,3 +35,5 @@ After you have created the users with the desired rights, enable login to the ho
 3. Click on the "Login to the Home Network" tab. 
 4. Enable the option "Login with FRITZ!Box user name and password". 
 5. Click "Apply" to save the settings. 
+
+
