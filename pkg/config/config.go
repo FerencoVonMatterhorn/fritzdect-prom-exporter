@@ -18,7 +18,7 @@ type FritzBoxCredentials struct {
 }
 
 func (c Config) String() string {
-	return fmt.Sprintf("\nSet loglevel to %s\nusername: %s\npassword: %s\ninterval: ", c.loglevel, c.Credentials.Username, c.Credentials.Password, c.Interval)
+	return fmt.Sprintf("\nSet loglevel to %s\nusername: %s\npassword: %s\ninterval: %s", c.loglevel, c.Credentials.Username, c.Credentials.Password, c.Interval)
 }
 
 func Parse() (Config, error) {
