@@ -3,6 +3,7 @@
 
 ## Table of contents
 1. [Prerequisites](#prerequisites)
+2. [How-To](#howto)
 
 ## Prerequisites - Creating the FRITZ!Box User <a name="prerequisites"></a>
 
@@ -36,4 +37,7 @@ After you have created the users with the desired rights, enable login to the ho
 4. Enable the option "Login with FRITZ!Box user name and password". 
 5. Click "Apply" to save the settings. 
 
+
+## How to use it <a name="howto"></a>
+t.b.d
 
