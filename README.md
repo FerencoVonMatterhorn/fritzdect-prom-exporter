@@ -4,8 +4,8 @@
   </a>
     
   <h3 align="center">FritzBox Dect Prometheus Exporter</h3>
+  </div>
   [![codecov](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter)
-  <div align="center">
         ## Prerequisites - Creating the FRITZ!Box User <a name="prerequisites"></a>
         
         ### 1. Creating a user account with the right to configure FRITZ!Box settings  
@@ -41,9 +41,6 @@
         
         ## How to use it <a name="howto"></a>
         t.b.d
- 
-  </div>
-</div>
 
 
 
