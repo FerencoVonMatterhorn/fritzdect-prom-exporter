@@ -29,6 +29,11 @@ func Test_setLogLevel(t *testing.T) {
 			args:    args{"5"},
 			wantErr: true,
 		},
+		{
+			name:    "insert special char",
+			args:    args{"?"},
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -1,15 +1,16 @@
 package main
 
 import (
+	"net/http"
+	"strconv"
+	"time"
+
 	"github.com/bpicode/fritzctl/fritz"
 	"github.com/ferencovonmatterhorn/fritzdect-prom-exporter/pkg/config"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"
-	"net/http"
-	"strconv"
-	"time"
 )
 
 func main() {
@@ -42,7 +43,6 @@ func main() {
 		log.Error(err)
 		return
 	}
-
 }
 
 func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, error) {
@@ -57,8 +57,7 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 	return fritzConnection, err
 }
 
-
-func recordMetrics(devlist []fritz.Device, interval int ) {
+func recordMetrics(devlist []fritz.Device, interval int) {
 	go func() {
 		for {
 			for _, dev := range devlist {
