@@ -47,7 +47,9 @@ After you have created the users with the desired rights, enable login to the ho
 
 
 ## How to use it <a name="howto"></a>
-t.b.d
+```bash
+$docker run -p 2112:2112 ferenco42/fritzdect-prom-exporter -u <username> -p <password> -l <loglevel> -i <interval>
+```
 
 
 
