@@ -27,15 +27,7 @@ func main() {
 		return
 	}
 
-	devs, err := connection.List()
-	if err != nil {
-		log.Error(err)
-		return
-	}
-
-	switches := devs.Switches()
-
-	recordMetrics(switches, c.Exporter.Interval)
+	err = recordMetrics(connection, c.Exporter.Interval)
 	log.Debug("starting http endpoint")
 	http.Handle("/metrics", promhttp.Handler())
 	err = http.ListenAndServe(":2112", nil)
@@ -57,10 +49,16 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 	return fritzConnection, err
 }
 
-func recordMetrics(devlist []fritz.Device, interval int) {
+func recordMetrics(connection fritz.HomeAuto, interval int) error {
 	go func() {
 		for {
-			for _, dev := range devlist {
+			devs, err := connection.List()
+			if err != nil {
+				panic(err)
+			}
+
+			switches := devs.Switches()
+			for _, dev := range switches {
 				log.Debug("getting temp from dect device")
 				temp, err := strconv.ParseFloat(dev.Temperature.FmtCelsius(), 64)
 				if err != nil {
@@ -76,6 +74,7 @@ func recordMetrics(devlist []fritz.Device, interval int) {
 			time.Sleep(time.Duration(interval) * time.Second)
 		}
 	}()
+return nil
 }
 
 var (
