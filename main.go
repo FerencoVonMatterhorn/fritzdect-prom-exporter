@@ -45,6 +45,7 @@ func main() {
 	}
 }
 
+
 func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, error) {
 	fritzConnection := fritz.NewHomeAuto(
 		fritz.SkipTLSVerify(),
@@ -57,16 +58,21 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 	return fritzConnection, err
 }
 
-func recordMetrics(devlist []fritz.Device, interval int) {
+func recordMetrics(devlist []fritz.Device, interval int){
 	go func() {
 		for {
 			for _, dev := range devlist {
+				log.Debug("getting temp from dect device")
 				temp, err := strconv.ParseFloat(dev.Temperature.FmtCelsius(), 64)
 				if err != nil {
 					panic(err)
 				}
+				power, err := strconv.ParseFloat(dev.Powermeter.FmtPowerW(),64)
+				if err != nil {
+					panic(err)
+				}
+				dect_power.Set(power)
 				dect_temperature.Set(temp)
-				log.Debug("set temp on dect dev")
 			}
 			time.Sleep(time.Duration(interval) * time.Second)
 		}
@@ -77,5 +83,13 @@ var (
 	dect_temperature = promauto.NewGauge(prometheus.GaugeOpts{
 		Name: "dect_temperature",
 		Help: "Temperature of Dect Device",
+	})
+)
+
+
+var (
+	dect_power = promauto.NewGauge(prometheus.GaugeOpts{
+		Name: "dect_power",
+		Help: "Power consumption of Dect Device",
 	})
 )
