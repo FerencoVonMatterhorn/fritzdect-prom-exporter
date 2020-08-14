@@ -27,7 +27,8 @@ func main() {
 		return
 	}
 
-	err = recordMetrics(connection, c.Exporter.Interval)
+	recordMetrics(connection, c.Exporter.Interval)
+
 	log.Debug("starting http endpoint")
 	http.Handle("/metrics", promhttp.Handler())
 	err = http.ListenAndServe(":2112", nil)
@@ -49,7 +50,7 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 	return fritzConnection, err
 }
 
-func recordMetrics(connection fritz.HomeAuto, interval int) error {
+func recordMetrics(connection fritz.HomeAuto, interval int) {
 	go func() {
 		for {
 			devs, err := connection.List()
@@ -74,7 +75,6 @@ func recordMetrics(connection fritz.HomeAuto, interval int) error {
 			time.Sleep(time.Duration(interval) * time.Second)
 		}
 	}()
-return nil
 }
 
 var (
