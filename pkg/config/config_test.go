@@ -20,7 +20,7 @@ func Test_setLogLevel(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name:    "unvalid loglevel",
+			name:    "invalid loglevel",
 			args:    args{"infooooooooooooooooooooo"},
 			wantErr: true,
 		},

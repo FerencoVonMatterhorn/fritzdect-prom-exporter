@@ -1,6 +1,6 @@
 module github.com/ferencovonmatterhorn/fritzdect-prom-exporter
 
-go 1.13
+go 1.14
 
 require (
 	github.com/bpicode/fritzctl v1.4.23
