@@ -35,7 +35,7 @@ func main() {
 
 	switches := devs.Switches()
 
-	recordMetrics(switches, c.Interval)
+	recordMetrics(switches, c.Exporter.Interval)
 	log.Debug("starting http endpoint")
 	http.Handle("/metrics", promhttp.Handler())
 	err = http.ListenAndServe(":2112", nil)

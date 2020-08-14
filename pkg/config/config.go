@@ -3,13 +3,13 @@ package config
 import (
 	"flag"
 	"fmt"
+
 	log "github.com/sirupsen/logrus"
 )
 
 type Config struct {
 	Credentials FritzBoxCredentials
-	Interval    int
-	loglevel    string
+	Exporter    ExporterConfig
 }
 
 type FritzBoxCredentials struct {
@@ -17,8 +17,13 @@ type FritzBoxCredentials struct {
 	Password string
 }
 
+type ExporterConfig struct {
+	Loglevel string
+	Interval int
+}
+
 func (c Config) String() string {
-	return fmt.Sprintf("\nSet loglevel to %s\nusername: %s\npassword: %s\ninterval: %d", c.loglevel, c.Credentials.Username, c.Credentials.Password, c.Interval)
+	return fmt.Sprintf("\nSet loglevel to %s\nusername: %s\npassword: %s\ninterval: %d", c.Exporter.Loglevel, c.Credentials.Username, c.Credentials.Password, c.Exporter.Interval)
 }
 
 func Parse() (Config, error) {
@@ -28,8 +33,10 @@ func Parse() (Config, error) {
 	password := flag.String("p", "", "Set the Fritzbox password for authentication")
 	flag.Parse()
 	c := Config{
-		loglevel: *loglevel,
-		Interval: *interval,
+		Exporter: ExporterConfig{
+			Loglevel: *loglevel,
+			Interval: *interval,
+		},
 		Credentials: FritzBoxCredentials{
 			Username: *username,
 			Password: *password,
