@@ -2,13 +2,11 @@ package main
 
 import (
 	"net/http"
-	"strconv"
-	"time"
+
+	"github.com/ferencovonmatterhorn/fritzdect-prom-exporter/pkg/collector"
 
 	"github.com/bpicode/fritzctl/fritz"
 	"github.com/ferencovonmatterhorn/fritzdect-prom-exporter/pkg/config"
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"
 )
@@ -27,7 +25,7 @@ func main() {
 		return
 	}
 
-	recordMetrics(connection, c.Exporter.Interval)
+	collector.CollectMetrics(connection)
 
 	log.Debug("starting http endpoint")
 	http.Handle("/metrics", promhttp.Handler())
@@ -49,44 +47,3 @@ func connectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, 
 	}
 	return fritzConnection, err
 }
-
-func recordMetrics(connection fritz.HomeAuto, interval int) {
-	go func() {
-		for {
-			devs, err := connection.List()
-			if err != nil {
-				panic(err)
-			}
-
-			switches := devs.Switches()
-			for _, dev := range switches {
-				log.Debug("getting temp from dect device")
-				temp, err := strconv.ParseFloat(dev.Temperature.FmtCelsius(), 64)
-				if err != nil {
-					panic(err)
-				}
-				power, err := strconv.ParseFloat(dev.Powermeter.FmtPowerW(), 64)
-				if err != nil {
-					panic(err)
-				}
-				dect_power.Set(power)
-				dect_temperature.Set(temp)
-			}
-			time.Sleep(time.Duration(interval) * time.Second)
-		}
-	}()
-}
-
-var (
-	dect_temperature = promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "dect_temperature",
-		Help: "Temperature of Dect Device",
-	})
-)
-
-var (
-	dect_power = promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "dect_power",
-		Help: "Power consumption of Dect Device",
-	})
-)
