@@ -25,15 +25,19 @@ func main() {
 		return
 	}
 
-	err = collector.CollectMetrics(connection)
-	if err != nil {
-		log.Error(err)
-		return
-	}
+	errChan := make(chan error, 1)
+	// ch <-chan error RO
+	// ch chan<- error RW
+	go func(ch chan<- error) {
+		ch <- collector.CollectMetrics(connection)
+	}(errChan)
 
 	log.Debug("starting http endpoint")
 	http.Handle("/metrics", promhttp.Handler())
-	err = http.ListenAndServe(":2112", nil)
+	go func(ch chan<- error) {
+		ch <- http.ListenAndServe(":2112", nil)
+	}(errChan)
+	err = <-errChan
 	if err != nil {
 		log.Error(err)
 		return

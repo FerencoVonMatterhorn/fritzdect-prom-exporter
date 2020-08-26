@@ -43,3 +43,38 @@ func Test_setLogLevel(t *testing.T) {
 		})
 	}
 }
+
+func TestConfig_String(t *testing.T) {
+	type fields struct {
+		Credentials FritzBoxCredentials
+		Exporter    ExporterConfig
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   string
+	}{
+		{
+			name: "insert normal values",
+			fields: fields{
+				Credentials: FritzBoxCredentials{
+					Username: "dasisteinUser",
+					Password: "test",
+				},
+				Exporter: ExporterConfig{Loglevel: "info"},
+			},
+			want: "\nSet loglevel to info\nusername: dasisteinUser\npassword: test\n",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c := Config{
+				Credentials: tt.fields.Credentials,
+				Exporter:    tt.fields.Exporter,
+			}
+			if got := c.String(); got != tt.want {
+				t.Errorf("String() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
