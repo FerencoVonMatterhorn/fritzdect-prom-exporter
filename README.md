@@ -49,7 +49,7 @@ After you have created the users with the desired rights, enable login to the ho
 ## How to use it <a name="howto"></a>
 # docker
 ```bash
-$docker run -p 2112:2112 ferenco42/fritzdect-prom-exporter:v1 -u <username> -p <password> -l <loglevel> -i <interval>
+$docker run -p 2112:2112 ferenco42/fritzdect-prom-exporter:v1 -u <username> -p <password> -l <loglevel>
 ```
 # docker-compose
 ```yaml
@@ -65,7 +65,6 @@ services:
       - '-u=<username>'
       - '-p=<password>'
       - '-l=<loglevel>'
-      - '-i=<interval>'
 ```
 ## Grafana dashboard example <a name="grafana dashboard"></a>
 <img src="images/grafana-dashboard-example.png" alt="grafana dashboard">
