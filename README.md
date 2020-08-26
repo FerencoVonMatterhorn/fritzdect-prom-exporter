@@ -67,4 +67,7 @@ services:
       - '-l=<loglevel>'
       - '-i=<interval>'
 ```
+## Grafana dashboard example <a name="grafana dashboard"></a>
+<img src="images/grafana-dashboard-example.png" alt="grafana dashboard">
+
 
