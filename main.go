@@ -25,7 +25,11 @@ func main() {
 		return
 	}
 
-	collector.CollectMetrics(connection)
+	err = collector.CollectMetrics(connection)
+	if err != nil {
+		log.Error(err)
+		return
+	}
 
 	log.Debug("starting http endpoint")
 	http.Handle("/metrics", promhttp.Handler())
