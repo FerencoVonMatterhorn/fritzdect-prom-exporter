@@ -7,7 +7,7 @@ import (
 	"github.com/bpicode/fritzctl/fritz"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
-	log "github.com/prometheus/common/log"
+	log "github.com/sirupsen/logrus"
 )
 
 func CollectMetrics(connection fritz.HomeAuto) error {
