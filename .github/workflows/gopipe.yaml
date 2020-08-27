@@ -12,11 +12,6 @@ jobs:
         with:
           args: run --timeout 5m
       - uses: actions/checkout@master
-      - name: SonarQube Scan
-        uses: kitabisa/sonarqube-action@master
-        with:
-          host: ${{ secrets.SONARQUBE_HOST }}
-          login: ${{ secrets.SONARQUBE_TOKEN }}
 
   go-test:
     name: Test
@@ -32,3 +27,10 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.txt
           fail_ci_if_error: true
+      - name: SonarQube Scan
+        uses: kitabisa/sonarqube-action@master
+        with:
+          host: ${{ secrets.SONARQUBE_HOST }}
+          login: ${{ secrets.SONARQUBE_TOKEN }}
+          args: >
+            -Dsonar.go.coverage.reportPaths=./coverage.txt
