@@ -12,6 +12,7 @@
 
 
 [![codecov](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter)
+[![Quality Gate Status](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=alert_status)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
 
 ## Prerequisites - Creating the FRITZ!Box User <a name="prerequisites"></a>
         
