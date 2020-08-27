@@ -20,17 +20,15 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-go@v2
       - name: Test Go files
-        run: go test -v -coverprofile=coverage.xml -covermode=atomic ./...
+        run: go test -v -coverprofile=coverage.out -covermode=atomic ./...
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.xml
+          file: ./coverage.out
           fail_ci_if_error: true
       - name: SonarQube Scan
         uses: kitabisa/sonarqube-action@master
         with:
           host: ${{ secrets.SONARQUBE_HOST }}
           login: ${{ secrets.SONARQUBE_TOKEN }}
-          args: >
-            -Dsonar.go.coverage.reportPaths=./coverage.xml
