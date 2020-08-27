@@ -16,9 +16,8 @@ jobs:
       - name: Run sonarqube
         run: sonar-scanner
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.organization=1corp
-          -Dsonar.host.url=https://sonarcloud.io/
-          -Dsonar.projectKey=sonar-scanner-action
+          -Dsonar.host.url=http://sonarqube.ferencoo.tech
+          -Dsonar.projectKey=golan-0
 
   go-test:
     name: Test
