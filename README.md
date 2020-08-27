@@ -12,7 +12,9 @@
 
 
 [![codecov](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter)
-[![Quality Gate Status](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=alert_status)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Bugs](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=bugs)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Lines of Code](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=ncloc)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Security Rating](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=security_rating)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
 
 ## Prerequisites - Creating the FRITZ!Box User <a name="prerequisites"></a>
         
