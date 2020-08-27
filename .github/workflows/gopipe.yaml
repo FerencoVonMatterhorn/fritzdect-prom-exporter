@@ -11,6 +11,14 @@ jobs:
         uses: actions-contrib/golangci-lint@v1
         with:
           args: run --timeout 5m
+      - name: Setup sonarqube
+        uses: warchant/setup-sonar-scanner@v1
+      - name: Run sonarqube
+        run: sonar-scanner
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.organization=1corp
+          -Dsonar.host.url=https://sonarcloud.io/
+          -Dsonar.projectKey=sonar-scanner-action
 
   go-test:
     name: Test
