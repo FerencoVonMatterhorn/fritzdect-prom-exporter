@@ -5,7 +5,7 @@
     <img src="images/gopher.jpg" alt="Logo" width=400 height=400>
   </a>
 
-  <h3 align="center">FritzBox Dect Prometheus Exporter</h3>
+  <h3 align="center">Fritz!Dect 200 Prometheus Exporter</h3>
 </p>
 
 </div>
