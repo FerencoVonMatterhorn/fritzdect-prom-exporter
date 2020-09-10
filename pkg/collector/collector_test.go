@@ -15,18 +15,18 @@ func TestCollectMetrics(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "pass null object",
+			name:    "pass null connection",
 			args:    struct{ connection fritz.HomeAuto }{connection: fritz.NewHomeAuto()},
 			wantErr: true,
 		},
 		{
-			name: "pass object with empty password",
+			name: "pass connection with empty password",
 			args: struct{ connection fritz.HomeAuto }{connection: fritz.NewHomeAuto(fritz.SkipTLSVerify(),
 				fritz.Credentials("test", ""))},
 			wantErr: true,
 		},
 		{
-			name: "pass object with empty user",
+			name: "pass connection with empty user",
 			args: struct{ connection fritz.HomeAuto }{connection: fritz.NewHomeAuto(fritz.SkipTLSVerify(),
 				fritz.Credentials("", "test"))},
 			wantErr: true,
