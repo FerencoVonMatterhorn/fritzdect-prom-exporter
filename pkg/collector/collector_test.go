@@ -1,9 +1,39 @@
 package collector
 
 import (
+	"errors"
 	"github.com/bpicode/fritzctl/fritz"
 	"testing"
 )
+
+type fakeClient struct {
+	listresponse *fritz.Devicelist
+	err          error
+}
+
+func (fc fakeClient) Login() error {
+	return fc.err
+}
+
+func (fc fakeClient) List() (*fritz.Devicelist, error) {
+	return fc.listresponse, fc.err
+}
+
+func (fc fakeClient) On(names ...string) error {
+	return fc.err
+}
+
+func (fc fakeClient) Off(names ...string) error {
+	return fc.err
+}
+
+func (fc fakeClient) Toggle(names ...string) error {
+	return fc.err
+}
+
+func (fc fakeClient) Temp(value float64, names ...string) error {
+	return fc.err
+}
 
 func TestCollectMetrics(t *testing.T) {
 	type args struct {
@@ -15,26 +45,141 @@ func TestCollectMetrics(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "pass null connection",
-			args:    struct{ connection fritz.HomeAuto }{connection: fritz.NewHomeAuto()},
+			name: "abort on error",
+			args: args{connection: fakeClient{
+				listresponse: nil,
+				err:          errors.New("test error"),
+			}},
 			wantErr: true,
 		},
 		{
-			name: "pass connection with empty password",
-			args: struct{ connection fritz.HomeAuto }{connection: fritz.NewHomeAuto(fritz.SkipTLSVerify(),
-				fritz.Credentials("test", ""))},
+			name: "pass empty temperature",
+			args: args{connection: fakeClient{
+				listresponse: &fritz.Devicelist{
+					Devices: []fritz.Device{
+						{
+							Identifier:      "123",
+							ID:              "1234",
+							Functionbitmask: "512",
+							Fwversion:       "",
+							Manufacturer:    "",
+							Productname:     "",
+							Present:         0,
+							Name:            "testDevice",
+							Switch:          fritz.Switch{},
+							Powermeter:      fritz.Powermeter{},
+							Temperature: fritz.Temperature{
+								Celsius: "",
+								Offset:  "",
+							},
+							Thermostat: fritz.Thermostat{},
+						},
+					},
+					Groups: nil,
+				},
+				err: nil,
+			}},
 			wantErr: true,
 		},
 		{
-			name: "pass connection with empty user",
-			args: struct{ connection fritz.HomeAuto }{connection: fritz.NewHomeAuto(fritz.SkipTLSVerify(),
-				fritz.Credentials("", "test"))},
+			name: "pass empty power in w",
+			args: args{connection: fakeClient{
+				listresponse: &fritz.Devicelist{
+					Devices: []fritz.Device{
+						{
+							Identifier:      "123",
+							ID:              "1234",
+							Functionbitmask: "512",
+							Fwversion:       "",
+							Manufacturer:    "",
+							Productname:     "",
+							Present:         0,
+							Name:            "testDevice",
+							Switch:          fritz.Switch{},
+							Powermeter: fritz.Powermeter{
+								Power:  "",
+								Energy: "",
+							},
+							Temperature: fritz.Temperature{
+								Celsius: "20",
+								Offset:  "",
+							},
+							Thermostat: fritz.Thermostat{},
+						},
+					},
+					Groups: nil,
+				},
+				err: nil,
+			}},
 			wantErr: true,
 		},
 		{
-			name: "pass object with empty password and user",
-			args: struct{ connection fritz.HomeAuto }{connection: fritz.NewHomeAuto(fritz.SkipTLSVerify(),
-				fritz.Credentials("", ""))},
+			name: "pass empty energy in wh",
+			args: args{connection: fakeClient{
+				listresponse: &fritz.Devicelist{
+					Devices: []fritz.Device{
+						{
+							Identifier:      "123",
+							ID:              "1234",
+							Functionbitmask: "512",
+							Fwversion:       "",
+							Manufacturer:    "",
+							Productname:     "",
+							Present:         0,
+							Name:            "testDevice",
+							Switch:          fritz.Switch{},
+							Powermeter: fritz.Powermeter{
+								Power:  "50",
+								Energy: "",
+							},
+							Temperature: fritz.Temperature{
+								Celsius: "20",
+								Offset:  "",
+							},
+							Thermostat: fritz.Thermostat{},
+						},
+					},
+					Groups: nil,
+				},
+				err: nil,
+			}},
+			wantErr: true,
+		},
+		{
+			name: "pass empty switch state",
+			args: args{connection: fakeClient{
+				listresponse: &fritz.Devicelist{
+					Devices: []fritz.Device{
+						{
+							Identifier:      "123",
+							ID:              "1234",
+							Functionbitmask: "512",
+							Fwversion:       "",
+							Manufacturer:    "",
+							Productname:     "",
+							Present:         0,
+							Name:            "testDevice",
+							Switch: fritz.Switch{
+								State:      "",
+								Mode:       "",
+								Lock:       "",
+								DeviceLock: "",
+							},
+							Powermeter: fritz.Powermeter{
+								Power:  "50",
+								Energy: "50",
+							},
+							Temperature: fritz.Temperature{
+								Celsius: "20",
+								Offset:  "",
+							},
+							Thermostat: fritz.Thermostat{},
+						},
+					},
+					Groups: nil,
+				},
+				err: nil,
+			}},
 			wantErr: true,
 		},
 	}
