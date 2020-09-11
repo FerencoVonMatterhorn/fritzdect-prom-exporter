@@ -6,13 +6,5 @@ import (
 )
 
 func ConnectToFritzbox(credentials config.FritzBoxCredentials) (fritz.HomeAuto, error) {
-	fritzConnection := fritz.NewHomeAuto(
-		fritz.SkipTLSVerify(),
-		fritz.Credentials(credentials.Username, credentials.Password),
-	)
-	err := fritzConnection.Login()
-	if err != nil {
-		return nil, err
-	}
-	return fritzConnection, err
+	return
 }

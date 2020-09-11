@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/bpicode/fritzctl/fritz"
 	"github.com/ferencovonmatterhorn/fritzdect-prom-exporter/pkg/collector"
 	"github.com/ferencovonmatterhorn/fritzdect-prom-exporter/pkg/config"
-	"github.com/ferencovonmatterhorn/fritzdect-prom-exporter/pkg/connection"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"
 	"net/http"
@@ -17,8 +17,8 @@ func main() {
 	}
 	log.Infof("%s", c)
 
-	con, err := connection.ConnectToFritzbox(c.Credentials)
-	if err != nil {
+	con := fritz.NewHomeAuto(fritz.SkipTLSVerify(), fritz.Credentials(c.Credentials.Username, c.Credentials.Password))
+	if err := con.Login(); err != nil {
 		log.Error(err)
 		return
 	}

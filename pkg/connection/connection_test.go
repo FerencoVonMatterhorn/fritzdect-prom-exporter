@@ -7,6 +7,35 @@ import (
 	"testing"
 )
 
+type fakeHomeAuto struct {
+	listresponse *fritz.Devicelist
+	err          error
+}
+
+func (fha fakeHomeAuto) Login() error {
+	return fha.err
+}
+
+func (fha fakeHomeAuto) List() (*fritz.Devicelist, error) {
+	return fha.listresponse, fha.err
+}
+
+func (fha fakeHomeAuto) On(names ...string) error {
+	return fha.err
+}
+
+func (fha fakeHomeAuto) Off(names ...string) error {
+	return fha.err
+}
+
+func (fha fakeHomeAuto) Toggle(names ...string) error {
+	return fha.err
+}
+
+func (fha fakeHomeAuto) Temp(value float64, names ...string) error {
+	return fha.err
+}
+
 func TestConnectToFritzbox(t *testing.T) {
 	type args struct {
 		credentials config.FritzBoxCredentials
@@ -17,7 +46,17 @@ func TestConnectToFritzbox(t *testing.T) {
 		want    fritz.HomeAuto
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "",
+			args: args{
+				{
+					Username: "",
+					Password: "",
+				},
+			},
+			want:    fritz.HomeAuto,
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
