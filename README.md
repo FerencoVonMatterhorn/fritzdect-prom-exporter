@@ -10,11 +10,17 @@
 
 </div>
 
-
-[![codecov](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/FerencoVonMatterhorn/prometheus-fritzdect-exporter)
 [![Bugs](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=bugs)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Code Smells](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=code_smells)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Coverage](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=coverage)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Duplicated Lines (%)](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=duplicated_lines_density)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
 [![Lines of Code](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=ncloc)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Maintainability Rating](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=sqale_rating)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Quality Gate Status](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=alert_status)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Reliability Rating](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=reliability_rating)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
 [![Security Rating](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=security_rating)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Technical Debt](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=sqale_index)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
+[![Vulnerabilities](https://sonarqube.ferencoo.tech/api/project_badges/measure?project=fritzdect-prom-exporter&metric=vulnerabilities)](https://sonarqube.ferencoo.tech/dashboard?id=fritzdect-prom-exporter)
 
 ## Prerequisites - Creating the FRITZ!Box User <a name="prerequisites"></a>
         
