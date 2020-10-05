@@ -58,7 +58,7 @@ func TestConfig_String(t *testing.T) {
 			name: "insert normal values",
 			fields: fields{
 				Credentials: FritzBoxCredentials{
-					Username: "dasisteinUser",
+					Username: "einUser",
 					Password: "test",
 				},
 				Exporter: ExporterConfig{Loglevel: "info"},
