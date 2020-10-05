@@ -63,7 +63,7 @@ func TestConfig_String(t *testing.T) {
 				},
 				Exporter: ExporterConfig{Loglevel: "info"},
 			},
-			want: "\nSet loglevel to info\nusername: dasisteinUser\npassword: test\n",
+			want: "\nSet loglevel to info\nusername: einUser\npassword: test\n",
 		},
 	}
 	for _, tt := range tests {
